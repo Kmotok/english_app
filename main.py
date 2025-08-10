@@ -206,21 +206,17 @@ if st.session_state.start_flg:
         with st.spinner("回答の音声読み上げ準備中..."):
             # ユーザー入力値をLLMに渡して回答取得
             llm_response = st.session_state.chain_basic_conversation.predict(input=audio_input_text)
-            
             # LLMからの回答を音声データに変換
             llm_response_audio = st.session_state.openai_obj.audio.speech.create(
                 model="tts-1",
                 voice="alloy",
                 input=llm_response
             )
-
             # 一旦mp3形式で音声ファイル作成後、wav形式に変換
             audio_output_file_path = f"{ct.AUDIO_OUTPUT_DIR}/audio_output_{int(time.time())}.wav"
             ft.save_to_wav(llm_response_audio.content, audio_output_file_path)
-
-        # 音声ファイルの読み上げ
-        ft.play_wav(audio_output_file_path, speed=st.session_state.speed)
-    ft.play_wav(audio_output_file_path, speed=st.session_state.speed)  # 音声ファイルを再生します
+            # 音声ファイルの読み上げ
+            ft.play_wav(audio_output_file_path, speed=st.session_state.speed)
 
         # AIメッセージの画面表示とリストへの追加
         with st.chat_message("assistant", avatar=ct.AI_ICON_PATH):
