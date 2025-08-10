@@ -1,6 +1,10 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+<<<<<<< HEAD
 *.py[cod]
+=======
+*.py[codz]
+>>>>>>> 7ea97e0bff3affa8ba40d6d0b08681c3780a3097
 *$py.class
 
 # C extensions
@@ -47,10 +51,14 @@ nosetests.xml
 coverage.xml
 *.cover
 <<<<<<< HEAD
+<<<<<<< HEAD
 *.py,cover
 =======
 *.py.cover
 >>>>>>> 823023f1f862178d707c19cfb477a156fed3f1b7
+=======
+*.py.cover
+>>>>>>> 7ea97e0bff3affa8ba40d6d0b08681c3780a3097
 .hypothesis/
 .pytest_cache/
 cover/
@@ -99,20 +107,27 @@ ipython_config.py
 #Pipfile.lock
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 7ea97e0bff3affa8ba40d6d0b08681c3780a3097
 # UV
 #   Similar to Pipfile.lock, it is generally recommended to include uv.lock in version control.
 #   This is especially recommended for binary packages to ensure reproducibility, and is more
 #   commonly ignored for libraries.
 #uv.lock
 
+<<<<<<< HEAD
 >>>>>>> 823023f1f862178d707c19cfb477a156fed3f1b7
+=======
+>>>>>>> 7ea97e0bff3affa8ba40d6d0b08681c3780a3097
 # poetry
 #   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
 #   This is especially recommended for binary packages to ensure reproducibility, and is more
 #   commonly ignored for libraries.
 #   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
 #poetry.lock
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 # pdm
@@ -126,6 +141,8 @@ ipython_config.py
 .pdm-build/
 
 =======
+=======
+>>>>>>> 7ea97e0bff3affa8ba40d6d0b08681c3780a3097
 #poetry.toml
 
 # pdm
@@ -144,7 +161,10 @@ ipython_config.py
 #   in the .venv directory. It is recommended not to include this directory in version control.
 .pixi
 
+<<<<<<< HEAD
 >>>>>>> 823023f1f862178d707c19cfb477a156fed3f1b7
+=======
+>>>>>>> 7ea97e0bff3affa8ba40d6d0b08681c3780a3097
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
 __pypackages__/
 
@@ -158,9 +178,13 @@ celerybeat.pid
 # Environments
 .env
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 .envrc
 >>>>>>> 823023f1f862178d707c19cfb477a156fed3f1b7
+=======
+.envrc
+>>>>>>> 7ea97e0bff3affa8ba40d6d0b08681c3780a3097
 .venv
 env/
 venv/
@@ -200,10 +224,13 @@ cython_debug/
 #.idea/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # original
 audio/input/*.wav
 audio/output/*.wav
 =======
+=======
+>>>>>>> 7ea97e0bff3affa8ba40d6d0b08681c3780a3097
 # Abstra
 # Abstra is an AI-powered process automation framework.
 # Ignore directories containing user credentials, local state, and settings.
@@ -234,4 +261,7 @@ audio/output/*.wav
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+<<<<<<< HEAD
 >>>>>>> 823023f1f862178d707c19cfb477a156fed3f1b7
+=======
+>>>>>>> 7ea97e0bff3affa8ba40d6d0b08681c3780a3097
