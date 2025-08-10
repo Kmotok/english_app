@@ -13,26 +13,14 @@ import os
 import time
 from pathlib import Path
 import wave
-import pyaudio
-from pydub import AudioSegment
-from audio_recorder_streamlit import audio_recorder
-import numpy as np
-from scipy.io.wavfile import write
-from langchain.prompts import (
-    ChatPromptTemplate,
-    HumanMessagePromptTemplate,
-    MessagesPlaceholder,
-)
-from langchain.schema import SystemMessage
-from langchain.memory import ConversationSummaryBufferMemory
-from langchain_openai import ChatOpenAI
-from langchain.chains import ConversationChain
-import constants as ct
-
-def record_audio(audio_input_file_path):
-    """
-    音声入力を受け取って音声ファイルを作成
-    """
+    # Streamlit CloudではPyAudioが使えないため、st.audioで再生
+    import streamlit as st
+    with open(file_path, "rb") as f:
+        audio_bytes = f.read()
+    st.audio(audio_bytes, format="audio/wav")
+    
+    # LLMからの回答の音声ファイルを削除
+    os.remove(file_path)
 
     audio = audio_recorder(
         text="発話開始",
@@ -91,47 +79,16 @@ def save_to_wav(llm_response_audio, audio_output_file_path):
 
 def play_wav(audio_output_file_path, speed=1.0):
     """
-    音声ファイルの読み上げ
+    音声ファイルの読み上げ（Streamlit Cloud対応: st.audioのみ）
     Args:
         audio_output_file_path: 音声ファイルのパス
-        speed: 再生速度（1.0が通常速度、0.5で半分の速さ、2.0で倍速など）
+        speed: 再生速度（未使用、将来拡張用）
     """
-
-    # 音声ファイルの読み込み
-    audio = AudioSegment.from_wav(audio_output_file_path)
-    
-    # 速度を変更
-    if speed != 1.0:
-        # frame_rateを変更することで速度を調整
-        modified_audio = audio._spawn(
-            audio.raw_data, 
-            overrides={"frame_rate": int(audio.frame_rate * speed)}
-        )
-        # 元のframe_rateに戻すことで正常再生させる（ピッチを保持したまま速度だけ変更）
-        modified_audio = modified_audio.set_frame_rate(audio.frame_rate)
-
-        modified_audio.export(audio_output_file_path, format="wav")
-
-    # PyAudioで再生
-    with wave.open(audio_output_file_path, 'rb') as play_target_file:
-        p = pyaudio.PyAudio()
-        stream = p.open(
-            format=p.get_format_from_width(play_target_file.getsampwidth()),
-            channels=play_target_file.getnchannels(),
-            rate=play_target_file.getframerate(),
-            output=True
-        )
-
-        data = play_target_file.readframes(1024)
-        while data:
-            stream.write(data)
-            data = play_target_file.readframes(1024)
-
-        stream.stop_stream()
-        stream.close()
-        p.terminate()
-    
-    # LLMからの回答の音声ファイルを削除
+    import streamlit as st
+    import os
+    with open(audio_output_file_path, "rb") as f:
+        audio_bytes = f.read()
+    st.audio(audio_bytes, format="audio/wav")
     os.remove(audio_output_file_path)
 
 def create_chain(system_template):

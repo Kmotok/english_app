@@ -220,6 +220,7 @@ if st.session_state.start_flg:
 
         # 音声ファイルの読み上げ
         ft.play_wav(audio_output_file_path, speed=st.session_state.speed)
+    ft.play_wav(audio_output_file_path, speed=st.session_state.speed)  # 音声ファイルを再生します
 
         # AIメッセージの画面表示とリストへの追加
         with st.chat_message("assistant", avatar=ct.AI_ICON_PATH):
