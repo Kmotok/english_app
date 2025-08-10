@@ -8,7 +8,6 @@ annotated-types==0.7.0
 anyio==4.8.0
 attrs==24.3.0
 audio-recorder-streamlit==0.0.10
-AudioRecorder==0.1
 av==12.3.0
 backoff==2.2.1
 bcrypt==4.3.0
@@ -110,7 +109,6 @@ pydantic_core==2.27.2
 pydeck==0.9.1
 pydub==0.25.1
 pyee==12.1.1
-Pygments==2.19.1
 pylibsrtp==0.10.0
 PyMuPDF==1.26.3
 pyOpenSSL==24.3.0
@@ -138,7 +136,6 @@ sounddevice==0.5.1
 soupsieve==2.7
 SQLAlchemy==2.0.37
 streamlit==1.41.1
-streamlit-audiorecorder==0.0.6
 streamlit-webrtc==0.47.9
 sympy==1.14.0
 tenacity==9.0.0
