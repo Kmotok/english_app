@@ -1,40 +1,9 @@
+
 import wave
-def is_audio_long_enough(audio_input_file_path, min_duration=0.1):
-    """
-    音声ファイルが指定秒数以上か判定
-    """
-    with wave.open(audio_input_file_path, 'rb') as wf:
-        frames = wf.getnframes()
-        rate = wf.getframerate()
-        duration = frames / float(rate)
-        return duration >= min_duration
 import streamlit as st
 import os
 import time
 from pathlib import Path
-import wave
-    # Streamlit CloudではPyAudioが使えないため、st.audioで再生
-    import streamlit as st
-    with open(file_path, "rb") as f:
-        audio_bytes = f.read()
-    st.audio(audio_bytes, format="audio/wav")
-    
-    # LLMからの回答の音声ファイルを削除
-    os.remove(file_path)
-
-    audio = audio_recorder(
-        text="発話開始",
-        neutral_color="gray",
-        recording_color="red",
-        icon_name="microphone",
-        icon_size="3x"
-    )
-
-    if audio is not None and len(audio) > 0:
-        with open(audio_input_file_path, "wb") as f:
-            f.write(audio)
-    else:
-        st.stop()
 
 def transcribe_audio(audio_input_file_path):
     """
