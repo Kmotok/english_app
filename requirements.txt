@@ -1,3 +1,4 @@
+pip>=25.2
 aiohappyeyeballs==2.4.4
 aiohttp==3.11.11
 aioice==0.9.0
