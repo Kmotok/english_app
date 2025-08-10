@@ -1,3 +1,13 @@
+import wave
+def is_audio_long_enough(audio_input_file_path, min_duration=0.1):
+    """
+    音声ファイルが指定秒数以上か判定
+    """
+    with wave.open(audio_input_file_path, 'rb') as wf:
+        frames = wf.getnframes()
+        rate = wf.getframerate()
+        duration = frames / float(rate)
+        return duration >= min_duration
 import streamlit as st
 import os
 import time
@@ -45,16 +55,20 @@ def transcribe_audio(audio_input_file_path):
         audio_input_file_path: 音声入力ファイルのパス
     """
 
+    # 音声長チェック
+    if not is_audio_long_enough(audio_input_file_path):
+        st.warning("録音が短すぎます。もう一度録音してください。")
+        os.remove(audio_input_file_path)
+        st.stop()
+
     with open(audio_input_file_path, 'rb') as audio_input_file:
         transcript = st.session_state.openai_obj.audio.transcriptions.create(
             model="whisper-1",
             file=audio_input_file,
             language="en"
         )
-    
     # 音声入力ファイルを削除
     os.remove(audio_input_file_path)
-
     return transcript
 
 def save_to_wav(llm_response_audio, audio_output_file_path):
