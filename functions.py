@@ -35,7 +35,7 @@ from pathlib import Path
 
 def transcribe_audio(audio_input_file_path):
     """
-from langchain.prompts import ChatPromptTemplate, HumanMessagePromptTemplate, MessagesPlaceholder
+from langchain_core.prompts import ChatPromptTemplate, HumanMessagePromptTemplate, MessagesPlaceholder
 from langchain.schema import SystemMessage
 from langchain.chains import ConversationChain
     音声入力ファイルから文字起こしテキストを取得
