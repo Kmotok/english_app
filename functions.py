@@ -5,7 +5,7 @@ from pathlib import Path
 import wave
 import pyaudio
 from pydub import AudioSegment
-from audiorecorder import audiorecorder
+from audio_recorder_streamlit import audio_recorder
 import numpy as np
 from scipy.io.wavfile import write
 from langchain.prompts import (
@@ -24,17 +24,17 @@ def record_audio(audio_input_file_path):
     音声入力を受け取って音声ファイルを作成
     """
 
-    audio = audiorecorder(
-        start_prompt="発話開始",
-        pause_prompt="やり直す",
-        stop_prompt="発話終了",
-        start_style={"color":"white", "background-color":"black"},
-        pause_style={"color":"gray", "background-color":"white"},
-        stop_style={"color":"white", "background-color":"black"}
+    audio = audio_recorder(
+        text="発話開始",
+        neutral_color="gray",
+        recording_color="red",
+        icon_name="microphone",
+        icon_size="3x"
     )
 
-    if len(audio) > 0:
-        audio.export(audio_input_file_path, format="wav")
+    if audio is not None and len(audio) > 0:
+        with open(audio_input_file_path, "wb") as f:
+            f.write(audio)
     else:
         st.stop()
 
