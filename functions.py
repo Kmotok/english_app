@@ -1,3 +1,22 @@
+from audio_recorder_streamlit import audio_recorder
+def record_audio(audio_input_file_path):
+    """
+    Streamlitのaudio_recorder_streamlitで音声を録音し、ファイルに保存する
+    Args:
+        audio_input_file_path: 保存先のファイルパス
+    """
+    audio = audio_recorder(
+        text="発話開始",
+        neutral_color="gray",
+        recording_color="red",
+        icon_name="microphone",
+        icon_size="3x"
+    )
+    if audio is not None and len(audio) > 0:
+        with open(audio_input_file_path, "wb") as f:
+            f.write(audio)
+    else:
+        st.stop()
 
 import wave
 import streamlit as st
