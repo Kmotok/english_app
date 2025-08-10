@@ -1,3 +1,12 @@
+def is_audio_long_enough(audio_input_file_path, min_duration=0.1):
+    """
+    音声ファイルが指定秒数以上か判定
+    """
+    with wave.open(audio_input_file_path, 'rb') as wf:
+        frames = wf.getnframes()
+        rate = wf.getframerate()
+        duration = frames / float(rate)
+        return duration >= min_duration
 from audio_recorder_streamlit import audio_recorder
 def record_audio(audio_input_file_path):
     """
